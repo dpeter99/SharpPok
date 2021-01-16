@@ -102,3 +102,19 @@ The server must search the database for a exact match for ``<PACKAGE_NAME>`` and
 
 #### GET ``http://<ADDRESS>:<PORT>/<PACKAGE_NAME>/<VERSION>``
 The server must search the database for a exact match for ``<PACKAGE_NAME>`` and return the payload for the ``<VERSION>`` of the package as an ``application/octet-stream``.
+
+## 5.2 The Client
+The client can be any program that is capable of communicating with the server using the API. As such we can't provide a specification that covers all clients. As general requirements the client should be able to search and download the packages.
+
+### 5.2.1 The CLI Client
+We do provide a optional specification for commandline clients that describe how the API endpoints might be reflected as CLI commands.
+
+#### ``pok-client.exe search <PACKAGE>``
+The client uses the Search api to find the package
+
+#### ``pok-client.exe <PACKAGE>``
+The client downloads the latest version of the package
+
+#### ``pok-client.exe <PACKAGE> <VERSION>``
+The client downloads the specified version of the package
+
