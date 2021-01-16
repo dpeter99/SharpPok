@@ -75,11 +75,11 @@ The server must expose the following api:
 
 > In all the following examples ``<ADDRESS>`` notation is used for parts of a http request that can change.
 
-### 5.1.2 Search
+### 5.1.1 Search
 The search API is composed of the following endpoint:
 
 #### GET ``http://<ADDRESS>:<PORT>/search/<SEARCH_TERM>``
-The server must search it1s database and try to find the best match for the ``SEARCH_TERM`` and return the following data as ``application/json``
+The server must search it's database and try to find the best match for the ``SEARCH_TERM`` in the packages name and return the following data as ``application/json``
 ```json
 {
     "name": "<NAME>",
@@ -91,3 +91,14 @@ The server must search it1s database and try to find the best match for the ``SE
 ```
 Where the ``<NAME>`` and ``<AUTHOR>`` represent the name and author metadata of the package.
 The version array contains the available versions and the last item in the list denotes the version corresponding to the ``latest`` metadata.
+
+If the server doesn't find any packages that match it should return an empty response of length 0.
+If the server finds multiple matches it should return a single package in the format above.
+
+### 5.1.2 Download
+
+#### GET ``http://<ADDRESS>:<PORT>/<PACKAGE_NAME>/latest``
+The server must search the database for a exact match for ``<PACKAGE_NAME>`` and return the payload for the ``latest`` version as an ``application/octet-stream``.
+
+#### GET ``http://<ADDRESS>:<PORT>/<PACKAGE_NAME>/<VERSION>``
+The server must search the database for a exact match for ``<PACKAGE_NAME>`` and return the payload for the ``<VERSION>`` of the package as an ``application/octet-stream``.
